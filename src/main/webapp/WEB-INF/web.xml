@@ -74,10 +74,10 @@
   </filter-mapping>
   <!--　该servlet为tomcat,jetty等容器提供,将静态资源映射从/改为/static/目录，如原来访问　http://localhost/foo.css　,现在http://localhost/static/foo.css　-->
   <!-- 不拦截静态文件 -->
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/static/*</url-pattern>
-  </servlet-mapping>
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>default</servlet-name>-->
+<!--    <url-pattern>/static/*</url-pattern>-->
+<!--  </servlet-mapping>-->
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

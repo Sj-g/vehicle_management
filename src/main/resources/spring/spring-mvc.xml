@@ -45,14 +45,16 @@
 
 
     <!--    拦截器-->
-<!--    <mvc:interceptors>-->
-<!--        <mvc:interceptor>-->
-<!--            <mvc:mapping path="/**"/>-->
-<!--            <mvc:exclude-mapping path="/login"/>-->
-<!--            <mvc:exclude-mapping path="/verification"/>-->
-<!--            <mvc:exclude-mapping path="/user/**"/>-->
-<!--            <bean class="com.it.interceptor.HomeResourceInterceptor"/>-->
-<!--        </mvc:interceptor>-->
-<!--    </mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <bean class="com.it.vehicle.interceptor.AdminRequestInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/driver/**"/>
+            <mvc:exclude-mapping path="/login"/>
+            <bean class="com.it.vehicle.interceptor.DriverRequestInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>
