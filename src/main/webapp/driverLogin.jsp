@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 王帅
@@ -12,10 +13,15 @@
 </head>
 <body>
 <h1>司机登录</h1>
-<form action="" >
-    用户名：<input type="text">
-    密 码 ：<input type="password">
+<form action="${pageContext.request.contextPath}/login/driverLoginRequest" method="post">
+    用户名：<input name="driverName" type="text"><br/>
+    密 码 ：<input name="driverPassword" type="password"><br/>
+    <c:if test="${driverError!=null}">
+        <span style="color: red">${driverError}</span>
+    </c:if>
     <button type="submit">提交</button>
+    <a href="${pageContext.request.contextPath}/adminLogin.jsp">管理员登录</a>
+    <a href="${pageContext.request.contextPath}/driverRegister.jsp">加入我们</a>
 </form>
 </body>
 </html>

@@ -3,7 +3,7 @@ package com.it.vehicle.entity;
 import java.util.Date;
 
 public class Driver {
-    private String driverId;
+    private Integer driverId;
 
     private String driverRealName;
 
@@ -39,12 +39,16 @@ public class Driver {
 
     private Integer stateNow;
 
-    public String getDriverId() {
+    private String driverEmail;
+
+    private String driverExperience;
+
+    public Integer getDriverId() {
         return driverId;
     }
 
-    public void setDriverId(String driverId) {
-        this.driverId = driverId == null ? null : driverId.trim();
+    public void setDriverId(Integer driverId) {
+        this.driverId = driverId;
     }
 
     public String getDriverRealName() {
@@ -181,5 +185,21 @@ public class Driver {
 
     public void setStateNow(Integer stateNow) {
         this.stateNow = stateNow;
+    }
+
+    public String getDriverEmail() {
+        return driverEmail;
+    }
+
+    public void setDriverEmail(String driverEmail) {
+        this.driverEmail = driverEmail == null ? null : driverEmail.trim();
+    }
+
+    public String getDriverExperience() {
+        return driverExperience;
+    }
+
+    public void setDriverExperience(String driverExperience) {
+        this.driverExperience = driverExperience == null ? null : driverExperience.trim();
     }
 }

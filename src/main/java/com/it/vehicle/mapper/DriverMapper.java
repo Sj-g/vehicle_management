@@ -10,7 +10,7 @@ public interface DriverMapper {
 
     int deleteByExample(DriverExample example);
 
-    int deleteByPrimaryKey(String driverId);
+    int deleteByPrimaryKey(Integer driverId);
 
     int insert(Driver record);
 
@@ -18,7 +18,7 @@ public interface DriverMapper {
 
     List<Driver> selectByExample(DriverExample example);
 
-    Driver selectByPrimaryKey(String driverId);
+    Driver selectByPrimaryKey(Integer driverId);
 
     int updateByExampleSelective(@Param("record") Driver record, @Param("example") DriverExample example);
 
