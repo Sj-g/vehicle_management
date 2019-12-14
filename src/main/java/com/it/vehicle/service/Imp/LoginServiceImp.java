@@ -1,4 +1,4 @@
-package com.it.vehicle.service.Imp.Imp;
+package com.it.vehicle.service.Imp;
 
 import com.it.vehicle.entity.Admin;
 import com.it.vehicle.entity.AdminExample;
@@ -6,7 +6,7 @@ import com.it.vehicle.entity.Driver;
 import com.it.vehicle.entity.DriverExample;
 import com.it.vehicle.mapper.AdminMapper;
 import com.it.vehicle.mapper.DriverMapper;
-import com.it.vehicle.service.Imp.LoginService;
+import com.it.vehicle.service.LoginService;
 import com.it.vehicle.utils.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +16,14 @@ import java.util.List;
 @Service
 public class LoginServiceImp implements LoginService {
 
-    @Autowired
-    AdminMapper adminMapper;
+    private final AdminMapper adminMapper;
 
+    private final DriverMapper driverMapper;
     @Autowired
-    DriverMapper driverMapper;
+    public LoginServiceImp(AdminMapper adminMapper, DriverMapper driverMapper) {
+        this.adminMapper = adminMapper;
+        this.driverMapper = driverMapper;
+    }
 
     //管理员登录逻辑的编写
     @Override
@@ -37,11 +40,7 @@ public class LoginServiceImp implements LoginService {
         List<Admin> admins = adminMapper.selectByExample(adminExample);
 
         //返回结果
-        if (admins != null && admins.size() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return admins != null && admins.size() > 0;
 
     }
 
@@ -57,15 +56,11 @@ public class LoginServiceImp implements LoginService {
         DriverExample.Criteria criteria = driverExample.createCriteria();
         criteria.andDriverNameEqualTo(driverName);
         criteria.andDriverPasswordEqualTo(driverPassword);
-        criteria.andStatePassEqualTo(1);
+        criteria.andStateNowEqualTo(1);
         List<Driver> drivers = driverMapper.selectByExample(driverExample);
 
         //返回结果
-        if (drivers!=null&&drivers.size()>0){
-            return true;
-        }else {
-            return false;
-        }
+        return drivers != null && drivers.size() > 0;
     }
 
 

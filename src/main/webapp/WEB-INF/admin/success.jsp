@@ -15,7 +15,7 @@
 <div>
     <h1>成功了！</h1>
 </div>
-
+<a href="${pageContext.request.contextPath}/WEB-INF/admin/datatables.jsp">Jinru</a>
 <div class="col-md-2 col-md-offset-10">
     <div >
         <a class="btn btn-danger" href="${pageContext.request.contextPath}/login/adminLogOut">

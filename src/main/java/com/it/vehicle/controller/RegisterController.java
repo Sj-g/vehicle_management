@@ -2,15 +2,14 @@ package com.it.vehicle.controller;
 
 import com.it.vehicle.dto.DriverInfo;
 import com.it.vehicle.entity.Driver;
-import com.it.vehicle.service.Imp.DriverService;
-import com.it.vehicle.service.Imp.RegisterService;
+import com.it.vehicle.service.DriverService;
+import com.it.vehicle.service.RegisterService;
 import com.it.vehicle.utils.DateUtils;
 import com.it.vehicle.utils.EmailIdentifyCode;
 import com.it.vehicle.utils.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 
 @Controller
 @RequestMapping("/register")
@@ -67,9 +65,7 @@ public class RegisterController {
             //完成文件上传
             driverIdImgFront.transferTo(new File(path,driverIdImgFrontFilename));
             driverIdImgReverse.transferTo(new File(path,driverIdImgReverseFilename));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (IllegalStateException e) {
+        } catch (IOException | IllegalStateException e) {
             e.printStackTrace();
         }
 
@@ -90,7 +86,6 @@ public class RegisterController {
         driver.setLicenseId(driverInfo.getLicenseId());
         driver.setDriverExperience(driverInfo.getDriverExperience());
         driver.setAllowType(driverInfo.getAllowType());
-        driver.setTruckId("1111");
 
         driverService.driverRegist(driver);
         request.getRequestDispatcher("/registerSuccess.jsp").forward(request,response);
@@ -106,6 +101,5 @@ public class RegisterController {
         session.setMaxInactiveInterval(60);
         EmailIdentifyCode.sendAuthCodeEmail(driverEmail, identifyCode);
     }
-
 
 }

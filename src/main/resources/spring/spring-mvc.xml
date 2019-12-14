@@ -45,16 +45,17 @@
 
 
     <!--    拦截器-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/admin/**"/>
-            <bean class="com.it.vehicle.interceptor.AdminRequestInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/driver/**"/>
-            <mvc:exclude-mapping path="/login"/>
-            <bean class="com.it.vehicle.interceptor.DriverRequestInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
-
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/admin/**"/>-->
+<!--            <bean class="com.it.vehicle.interceptor.AdminRequestInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/driver/**"/>-->
+<!--            <mvc:exclude-mapping path="/login"/>-->
+<!--            <bean class="com.it.vehicle.interceptor.DriverRequestInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
+    <!--    异常类-->
+    <bean id="globalExceptionHandler" class="com.it.vehicle.dto.GlobalExceptionHandler"/>
 </beans>

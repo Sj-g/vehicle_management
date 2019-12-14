@@ -8,13 +8,14 @@
 <generatorConfiguration>
 
     <!-- mysql jar 文件位置 -->
-    <classPathEntry location="D:\DevelopingSoftware\apache-maven\repositories\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar" />
+    <classPathEntry
+            location="D:\apache-maven-3.6.1\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true" />
+            <property name="suppressAllComments" value="true"/>
             <!-- 是否去除所有自动生成的文件的时间戳，默认为false -->
             <property name="suppressDate" value="true"/>
         </commentGenerator>
@@ -26,8 +27,8 @@
                         password="12345678">
         </jdbcConnection>
 
-        <javaTypeResolver >
-            <property name="forceBigDecimals" value="false" />
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
         <!-- 指定javabean生成的位置 -->
@@ -35,8 +36,8 @@
         <javaModelGenerator
                 targetPackage="com.it.vehicle.entity"
                 targetProject="src\main\java">
-            <property name="enableSubPackages" value="false" />
-            <property name="trimStrings" value="true" />
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 配置生成相应的实体Mapper.xml，对于Mapper3.X我们需要把type="XMLMAPPER" -->
@@ -44,7 +45,7 @@
         <sqlMapGenerator
                 targetPackage="mapper"
                 targetProject="src\main\resources">
-            <property name="enableSubPackages" value="false" />
+            <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
         <!-- 配置生成相应的接口类，对应与Mapper.xml中的一系列CRUD方法SQL语句 -->
@@ -52,13 +53,17 @@
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="com.it.vehicle.mapper"
                              targetProject="src\main\java">
-            <property name="enableSubPackages" value="false" />
+            <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
         <!-- table标签指定每个表的生成策略 -->
-        <table tableName="admin" domainObjectName="Admin"></table>
-        <table tableName="driver" domainObjectName="Driver"></table>
-        <table tableName="truck" domainObjectName="Truck"></table>
+        <table tableName="admin" domainObjectName="Admin"/>
+        <table tableName="driver" domainObjectName="Driver"/>
+        <table tableName="truck" domainObjectName="Truck"/>
+        <table tableName="goods_order" domainObjectName="GoodsOrder"/>
+        <table tableName="location" domainObjectName="Location"/>
+        <table tableName="transport" domainObjectName="Transport"/>
+
 
     </context>
 </generatorConfiguration>

@@ -55,23 +55,23 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
-  <!-- 4、使用Rest风格的URI，将页面普通的post请求转为指定的delete或者put请求 -->
-  <filter>
-    <filter-name>HiddenHttpMethodFilter</filter-name>
-    <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>HiddenHttpMethodFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <filter>
-    <filter-name>HttpPutFormContentFilter</filter-name>
-    <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>HttpPutFormContentFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+<!--  &lt;!&ndash; 4、使用Rest风格的URI，将页面普通的post请求转为指定的delete或者put请求 &ndash;&gt;-->
+<!--  <filter>-->
+<!--    <filter-name>HiddenHttpMethodFilter</filter-name>-->
+<!--    <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>-->
+<!--  </filter>-->
+<!--  <filter-mapping>-->
+<!--    <filter-name>HiddenHttpMethodFilter</filter-name>-->
+<!--    <url-pattern>/*</url-pattern>-->
+<!--  </filter-mapping>-->
+<!--  <filter>-->
+<!--    <filter-name>HttpPutFormContentFilter</filter-name>-->
+<!--    <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>-->
+<!--  </filter>-->
+<!--  <filter-mapping>-->
+<!--    <filter-name>HttpPutFormContentFilter</filter-name>-->
+<!--    <url-pattern>/*</url-pattern>-->
+<!--  </filter-mapping>-->
   <!--　该servlet为tomcat,jetty等容器提供,将静态资源映射从/改为/static/目录，如原来访问　http://localhost/foo.css　,现在http://localhost/static/foo.css　-->
   <!-- 不拦截静态文件 -->
 <!--  <servlet-mapping>-->

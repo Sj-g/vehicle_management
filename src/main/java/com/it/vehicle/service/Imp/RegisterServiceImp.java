@@ -1,6 +1,6 @@
-package com.it.vehicle.service.Imp.Imp;
+package com.it.vehicle.service.Imp;
 
-import com.it.vehicle.service.Imp.RegisterService;
+import com.it.vehicle.service.RegisterService;
 import org.springframework.stereotype.Service;
 
 @Service

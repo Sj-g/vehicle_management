@@ -1,4 +1,4 @@
-package com.it.vehicle.service.Imp;
+package com.it.vehicle.service;
 
 public interface LoginService {
 
