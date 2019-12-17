@@ -4,7 +4,6 @@ import com.it.vehicle.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,14 +11,14 @@ import javax.servlet.http.HttpSession;
 /**
  * 管理员和司机登录相关控制
  */
-
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-
+    private final LoginService loginService;
     @Autowired
-    LoginService loginService;
-
+    public LoginController(LoginService loginService) {
+        this.loginService = loginService;
+    }
 
     //管理员登录控制
     @RequestMapping("/adminLoginRequest")
@@ -32,6 +31,7 @@ public class LoginController {
         boolean isAdmin = loginService.adminLogin(adminName,adminPassword);
 
         if (isAdmin){
+
             //isAdmin为true管理员名和密码正确，存入session并跳转到管理员主页
             request.getSession().setAttribute("admin","adminLogin");
             request.getRequestDispatcher("/WEB-INF/admin/success.jsp").forward(request,response);
@@ -42,7 +42,6 @@ public class LoginController {
         }
 
     }
-
 
     //管理员退出控制
     @RequestMapping("/adminLogOut")

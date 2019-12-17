@@ -35,10 +35,10 @@ public class AdminServiceImp implements AdminService {
     }
 
     @Override
-    public void batchDeleteAdmin(List<Integer> adminIds) {
+    public void batchDeleteAdmin(List<Integer> adminId) {
         AdminExample adminExample=new AdminExample();
         AdminExample.Criteria criteria=adminExample.createCriteria();
-        criteria.andAdminIdIn(adminIds);
+        criteria.andAdminIdIn(adminId);
         adminMapper.deleteByExample(adminExample);
     }
 

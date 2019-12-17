@@ -22,11 +22,13 @@ import java.io.IOException;
 @RequestMapping("/register")
 public class RegisterController {
 
+    private final RegisterService registerService;
+    private final DriverService driverService;
     @Autowired
-    RegisterService registerService;
-
-    @Autowired
-    DriverService driverService;
+    public RegisterController(RegisterService registerService, DriverService driverService) {
+        this.registerService = registerService;
+        this.driverService = driverService;
+    }
 
     //司机注册控制
     @RequestMapping("/driverRegister")

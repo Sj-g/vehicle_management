@@ -28,10 +28,6 @@ public class AdminController {
     String testInterceptor() {
         return "admin/success";
     }
-    @RequestMapping("/test")
-    String test() {
-        return "admin/datatable";
-    }
     /**
      * 增加管理员
      *
@@ -53,8 +49,8 @@ public class AdminController {
      * @param adminId 管理员Id
      * @return 用户反馈
      */
-    @GetMapping("/deleteAdmin")
-    Message deleteAdmin(Integer adminId) {
+    @GetMapping("/deleteAdmin/{adminId}")
+    Message deleteAdmin(@PathVariable Integer adminId) {
         if (adminId == null) {
             return Message.status(StatusCode.ENTITY_NULL);
         }
@@ -66,13 +62,13 @@ public class AdminController {
     /**
      * 批量删除
      *
-     * @param adminIds 管理员Id
+     * @param adminId 管理员Id
      * @return 反馈信息
      */
     @GetMapping("/batchDeleteAdmin")
-    Message batchDeleteAdmin(List<Integer> adminIds) {
-        if (adminIds != null && adminIds.size() > 0) {
-            adminService.batchDeleteAdmin(adminIds);
+    Message batchDeleteAdmin(@RequestParam("adminId") List<Integer> adminId) {
+        if (adminId != null && adminId.size() > 0) {
+            adminService.batchDeleteAdmin(adminId);
             return Message.success();
         }
         return Message.status(StatusCode.ENTITY_NULL);

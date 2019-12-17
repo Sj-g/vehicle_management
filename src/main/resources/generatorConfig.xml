@@ -57,12 +57,12 @@
         </javaClientGenerator>
 
         <!-- table标签指定每个表的生成策略 -->
-        <table tableName="admin" domainObjectName="Admin"/>
-        <table tableName="driver" domainObjectName="Driver"/>
-        <table tableName="truck" domainObjectName="Truck"/>
-        <table tableName="goods_order" domainObjectName="GoodsOrder"/>
-        <table tableName="location" domainObjectName="Location"/>
-        <table tableName="transport" domainObjectName="Transport"/>
+        <!--        <table tableName="admin" domainObjectName="Admin"/>-->
+        <!--        <table tableName="driver" domainObjectName="Driver"/>-->
+        <!--        <table tableName="truck" domainObjectName="Truck"/>-->
+                <table tableName="goods_order" domainObjectName="GoodsOrder"/>
+        <!--        <table tableName="location" domainObjectName="Location"/>-->
+        <!--        <table tableName="transport" domainObjectName="Transport"/>-->
 
 
     </context>
