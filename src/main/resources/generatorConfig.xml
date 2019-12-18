@@ -60,9 +60,9 @@
         <!--        <table tableName="admin" domainObjectName="Admin"/>-->
         <!--        <table tableName="driver" domainObjectName="Driver"/>-->
         <!--        <table tableName="truck" domainObjectName="Truck"/>-->
-                <table tableName="goods_order" domainObjectName="GoodsOrder"/>
+<!--                <table tableName="goods_order" domainObjectName="GoodsOrder"/>-->
         <!--        <table tableName="location" domainObjectName="Location"/>-->
-        <!--        <table tableName="transport" domainObjectName="Transport"/>-->
+                <table tableName="transport" domainObjectName="Transport"/>
 
 
     </context>

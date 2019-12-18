@@ -318,6 +318,12 @@
             <artifactId>jersey-client</artifactId>
             <version>1.18.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- 文件上传所需的各种jar包 -->
 
     </dependencies>
