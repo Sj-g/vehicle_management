@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.vehicle.mapper.GoodsOrderMapper">
+  <resultMap id="BaseResultMap" type="com.it.vehicle.entity.GoodsOrder">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="sender_name" jdbcType="VARCHAR" property="senderName" />
+    <result column="sender_phone" jdbcType="VARCHAR" property="senderPhone" />
+    <result column="sender_address" jdbcType="VARCHAR" property="senderAddress" />
+    <result column="receive_name" jdbcType="VARCHAR" property="receiveName" />
+    <result column="receive_phone" jdbcType="VARCHAR" property="receivePhone" />
+    <result column="receive_address" jdbcType="VARCHAR" property="receiveAddress" />
+    <result column="order_weight" jdbcType="REAL" property="orderWeight" />
+    <result column="order_volume" jdbcType="REAL" property="orderVolume" />
+    <result column="order_note" jdbcType="VARCHAR" property="orderNote" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="transport_id" jdbcType="INTEGER" property="transportId" />
+    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+    <result column="order_consign" jdbcType="VARCHAR" property="orderConsign" />
+    <result column="order_carrier" jdbcType="VARCHAR" property="orderCarrier" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    order_id, order_number, sender_name, sender_phone, sender_address, receive_name, 
+    receive_phone, receive_address, order_weight, order_volume, order_note, order_status, 
+    transport_id, delivery_time, order_consign, order_carrier
+  </sql>
+  <select id="selectByExample" parameterType="com.it.vehicle.entity.GoodsOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.it.vehicle.entity.GoodsOrderExample">
+    delete from goods_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.it.vehicle.entity.GoodsOrder">
+    insert into goods_order (order_id, order_number, sender_name, 
+      sender_phone, sender_address, receive_name, 
+      receive_phone, receive_address, order_weight, 
+      order_volume, order_note, order_status, 
+      transport_id, delivery_time, order_consign, 
+      order_carrier)
+    values (#{orderId,jdbcType=INTEGER}, #{orderNumber,jdbcType=VARCHAR}, #{senderName,jdbcType=VARCHAR}, 
+      #{senderPhone,jdbcType=VARCHAR}, #{senderAddress,jdbcType=VARCHAR}, #{receiveName,jdbcType=VARCHAR}, 
+      #{receivePhone,jdbcType=VARCHAR}, #{receiveAddress,jdbcType=VARCHAR}, #{orderWeight,jdbcType=REAL}, 
+      #{orderVolume,jdbcType=REAL}, #{orderNote,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, 
+      #{transportId,jdbcType=INTEGER}, #{deliveryTime,jdbcType=TIMESTAMP}, #{orderConsign,jdbcType=VARCHAR}, 
+      #{orderCarrier,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.it.vehicle.entity.GoodsOrder">
+    insert into goods_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="senderName != null">
+        sender_name,
+      </if>
+      <if test="senderPhone != null">
+        sender_phone,
+      </if>
+      <if test="senderAddress != null">
+        sender_address,
+      </if>
+      <if test="receiveName != null">
+        receive_name,
+      </if>
+      <if test="receivePhone != null">
+        receive_phone,
+      </if>
+      <if test="receiveAddress != null">
+        receive_address,
+      </if>
+      <if test="orderWeight != null">
+        order_weight,
+      </if>
+      <if test="orderVolume != null">
+        order_volume,
+      </if>
+      <if test="orderNote != null">
+        order_note,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="transportId != null">
+        transport_id,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="orderConsign != null">
+        order_consign,
+      </if>
+      <if test="orderCarrier != null">
+        order_carrier,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="senderName != null">
+        #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="senderPhone != null">
+        #{senderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="senderAddress != null">
+        #{senderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveName != null">
+        #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePhone != null">
+        #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAddress != null">
+        #{receiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderWeight != null">
+        #{orderWeight,jdbcType=REAL},
+      </if>
+      <if test="orderVolume != null">
+        #{orderVolume,jdbcType=REAL},
+      </if>
+      <if test="orderNote != null">
+        #{orderNote,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="transportId != null">
+        #{transportId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderConsign != null">
+        #{orderConsign,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCarrier != null">
+        #{orderCarrier,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.it.vehicle.entity.GoodsOrderExample" resultType="java.lang.Long">
+    select count(*) from goods_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update goods_order
+    <set>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNumber != null">
+        order_number = #{record.orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.senderName != null">
+        sender_name = #{record.senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.senderPhone != null">
+        sender_phone = #{record.senderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.senderAddress != null">
+        sender_address = #{record.senderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveName != null">
+        receive_name = #{record.receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivePhone != null">
+        receive_phone = #{record.receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveAddress != null">
+        receive_address = #{record.receiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderWeight != null">
+        order_weight = #{record.orderWeight,jdbcType=REAL},
+      </if>
+      <if test="record.orderVolume != null">
+        order_volume = #{record.orderVolume,jdbcType=REAL},
+      </if>
+      <if test="record.orderNote != null">
+        order_note = #{record.orderNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStatus != null">
+        order_status = #{record.orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.transportId != null">
+        transport_id = #{record.transportId,jdbcType=INTEGER},
+      </if>
+      <if test="record.deliveryTime != null">
+        delivery_time = #{record.deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderConsign != null">
+        order_consign = #{record.orderConsign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderCarrier != null">
+        order_carrier = #{record.orderCarrier,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update goods_order
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      order_number = #{record.orderNumber,jdbcType=VARCHAR},
+      sender_name = #{record.senderName,jdbcType=VARCHAR},
+      sender_phone = #{record.senderPhone,jdbcType=VARCHAR},
+      sender_address = #{record.senderAddress,jdbcType=VARCHAR},
+      receive_name = #{record.receiveName,jdbcType=VARCHAR},
+      receive_phone = #{record.receivePhone,jdbcType=VARCHAR},
+      receive_address = #{record.receiveAddress,jdbcType=VARCHAR},
+      order_weight = #{record.orderWeight,jdbcType=REAL},
+      order_volume = #{record.orderVolume,jdbcType=REAL},
+      order_note = #{record.orderNote,jdbcType=VARCHAR},
+      order_status = #{record.orderStatus,jdbcType=INTEGER},
+      transport_id = #{record.transportId,jdbcType=INTEGER},
+      delivery_time = #{record.deliveryTime,jdbcType=TIMESTAMP},
+      order_consign = #{record.orderConsign,jdbcType=VARCHAR},
+      order_carrier = #{record.orderCarrier,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.it.vehicle.entity.GoodsOrder">
+    update goods_order
+    <set>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="senderName != null">
+        sender_name = #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="senderPhone != null">
+        sender_phone = #{senderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="senderAddress != null">
+        sender_address = #{senderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveName != null">
+        receive_name = #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePhone != null">
+        receive_phone = #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAddress != null">
+        receive_address = #{receiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderWeight != null">
+        order_weight = #{orderWeight,jdbcType=REAL},
+      </if>
+      <if test="orderVolume != null">
+        order_volume = #{orderVolume,jdbcType=REAL},
+      </if>
+      <if test="orderNote != null">
+        order_note = #{orderNote,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="transportId != null">
+        transport_id = #{transportId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderConsign != null">
+        order_consign = #{orderConsign,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCarrier != null">
+        order_carrier = #{orderCarrier,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.it.vehicle.entity.GoodsOrder">
+    update goods_order
+    set order_number = #{orderNumber,jdbcType=VARCHAR},
+      sender_name = #{senderName,jdbcType=VARCHAR},
+      sender_phone = #{senderPhone,jdbcType=VARCHAR},
+      sender_address = #{senderAddress,jdbcType=VARCHAR},
+      receive_name = #{receiveName,jdbcType=VARCHAR},
+      receive_phone = #{receivePhone,jdbcType=VARCHAR},
+      receive_address = #{receiveAddress,jdbcType=VARCHAR},
+      order_weight = #{orderWeight,jdbcType=REAL},
+      order_volume = #{orderVolume,jdbcType=REAL},
+      order_note = #{orderNote,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      transport_id = #{transportId,jdbcType=INTEGER},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      order_consign = #{orderConsign,jdbcType=VARCHAR},
+      order_carrier = #{orderCarrier,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.vehicle.mapper.TransportMapper">
+  <resultMap id="BaseResultMap" type="com.it.vehicle.entity.Transport">
+    <id column="transport_id" jdbcType="INTEGER" property="transportId" />
+    <result column="transport_number" jdbcType="VARCHAR" property="transportNumber" />
+    <result column="transport_origin" jdbcType="VARCHAR" property="transportOrigin" />
+    <result column="transport_end" jdbcType="VARCHAR" property="transportEnd" />
+    <result column="transport_state" jdbcType="INTEGER" property="transportState" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="transport_weight" jdbcType="REAL" property="transportWeight" />
+    <result column="transport_path" jdbcType="VARCHAR" property="transportPath" />
+    <result column="transport_delivery_time" jdbcType="TIMESTAMP" property="transportDeliveryTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    transport_id, transport_number, transport_origin, transport_end, transport_state, 
+    create_time, transport_weight, transport_path, transport_delivery_time
+  </sql>
+  <select id="selectByExample" parameterType="com.it.vehicle.entity.TransportExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from transport
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from transport
+    where transport_id = #{transportId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from transport
+    where transport_id = #{transportId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.it.vehicle.entity.TransportExample">
+    delete from transport
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.it.vehicle.entity.Transport">
+    insert into transport (transport_id, transport_number, transport_origin, 
+      transport_end, transport_state, create_time, 
+      transport_weight, transport_path, transport_delivery_time
+      )
+    values (#{transportId,jdbcType=INTEGER}, #{transportNumber,jdbcType=VARCHAR}, #{transportOrigin,jdbcType=VARCHAR}, 
+      #{transportEnd,jdbcType=VARCHAR}, #{transportState,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{transportWeight,jdbcType=REAL}, #{transportPath,jdbcType=VARCHAR}, #{transportDeliveryTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.it.vehicle.entity.Transport" useGeneratedKeys="true" keyProperty="transportId">
+    insert into transport
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="transportId != null">
+        transport_id,
+      </if>
+      <if test="transportNumber != null">
+        transport_number,
+      </if>
+      <if test="transportOrigin != null">
+        transport_origin,
+      </if>
+      <if test="transportEnd != null">
+        transport_end,
+      </if>
+      <if test="transportState != null">
+        transport_state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="transportWeight != null">
+        transport_weight,
+      </if>
+      <if test="transportPath != null">
+        transport_path,
+      </if>
+      <if test="transportDeliveryTime != null">
+        transport_delivery_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="transportId != null">
+        #{transportId,jdbcType=INTEGER},
+      </if>
+      <if test="transportNumber != null">
+        #{transportNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="transportOrigin != null">
+        #{transportOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="transportEnd != null">
+        #{transportEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="transportState != null">
+        #{transportState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transportWeight != null">
+        #{transportWeight,jdbcType=REAL},
+      </if>
+      <if test="transportPath != null">
+        #{transportPath,jdbcType=VARCHAR},
+      </if>
+      <if test="transportDeliveryTime != null">
+        #{transportDeliveryTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.it.vehicle.entity.TransportExample" resultType="java.lang.Long">
+    select count(*) from transport
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update transport
+    <set>
+      <if test="record.transportId != null">
+        transport_id = #{record.transportId,jdbcType=INTEGER},
+      </if>
+      <if test="record.transportNumber != null">
+        transport_number = #{record.transportNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transportOrigin != null">
+        transport_origin = #{record.transportOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transportEnd != null">
+        transport_end = #{record.transportEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transportState != null">
+        transport_state = #{record.transportState,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.transportWeight != null">
+        transport_weight = #{record.transportWeight,jdbcType=REAL},
+      </if>
+      <if test="record.transportPath != null">
+        transport_path = #{record.transportPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transportDeliveryTime != null">
+        transport_delivery_time = #{record.transportDeliveryTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update transport
+    set transport_id = #{record.transportId,jdbcType=INTEGER},
+      transport_number = #{record.transportNumber,jdbcType=VARCHAR},
+      transport_origin = #{record.transportOrigin,jdbcType=VARCHAR},
+      transport_end = #{record.transportEnd,jdbcType=VARCHAR},
+      transport_state = #{record.transportState,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      transport_weight = #{record.transportWeight,jdbcType=REAL},
+      transport_path = #{record.transportPath,jdbcType=VARCHAR},
+      transport_delivery_time = #{record.transportDeliveryTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.it.vehicle.entity.Transport">
+    update transport
+    <set>
+      <if test="transportNumber != null">
+        transport_number = #{transportNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="transportOrigin != null">
+        transport_origin = #{transportOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="transportEnd != null">
+        transport_end = #{transportEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="transportState != null">
+        transport_state = #{transportState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transportWeight != null">
+        transport_weight = #{transportWeight,jdbcType=REAL},
+      </if>
+      <if test="transportPath != null">
+        transport_path = #{transportPath,jdbcType=VARCHAR},
+      </if>
+      <if test="transportDeliveryTime != null">
+        transport_delivery_time = #{transportDeliveryTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where transport_id = #{transportId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.it.vehicle.entity.Transport">
+    update transport
+    set transport_number = #{transportNumber,jdbcType=VARCHAR},
+      transport_origin = #{transportOrigin,jdbcType=VARCHAR},
+      transport_end = #{transportEnd,jdbcType=VARCHAR},
+      transport_state = #{transportState,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      transport_weight = #{transportWeight,jdbcType=REAL},
+      transport_path = #{transportPath,jdbcType=VARCHAR},
+      transport_delivery_time = #{transportDeliveryTime,jdbcType=TIMESTAMP}
+    where transport_id = #{transportId,jdbcType=INTEGER}
+  </update>
+</mapper>

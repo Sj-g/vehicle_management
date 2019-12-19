@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.vehicle.mapper.TruckMapper">
+  <resultMap id="BaseResultMap" type="com.it.vehicle.entity.Truck">
+    <id column="truck_id" jdbcType="INTEGER" property="truckId" />
+    <result column="truck_number" jdbcType="VARCHAR" property="truckNumber" />
+    <result column="truck_type" jdbcType="VARCHAR" property="truckType" />
+    <result column="motor_id" jdbcType="VARCHAR" property="motorId" />
+    <result column="chassis_id" jdbcType="VARCHAR" property="chassisId" />
+    <result column="insurance_company" jdbcType="VARCHAR" property="insuranceCompany" />
+    <result column="truck_image_address" jdbcType="VARCHAR" property="truckImageAddress" />
+    <result column="truck_weight" jdbcType="REAL" property="truckWeight" />
+    <result column="carrying_capacity" jdbcType="REAL" property="carryingCapacity" />
+    <result column="truck_height" jdbcType="REAL" property="truckHeight" />
+    <result column="truck_width" jdbcType="REAL" property="truckWidth" />
+    <result column="truck_controlled_axis" jdbcType="REAL" property="truckControlledAxis" />
+    <result column="truck_length" jdbcType="REAL" property="truckLength" />
+    <result column="truck_status" jdbcType="INTEGER" property="truckStatus" />
+    <result column="truck_transport_id" jdbcType="INTEGER" property="truckTransportId" />
+    <result column="truck_driver_id" jdbcType="INTEGER" property="truckDriverId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    truck_id, truck_number, truck_type, motor_id, chassis_id, insurance_company, truck_image_address, 
+    truck_weight, carrying_capacity, truck_height, truck_width, truck_controlled_axis, 
+    truck_length, truck_status, truck_transport_id, truck_driver_id
+  </sql>
+  <select id="selectByExample" parameterType="com.it.vehicle.entity.TruckExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from truck
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from truck
+    where truck_id = #{truckId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from truck
+    where truck_id = #{truckId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.it.vehicle.entity.TruckExample">
+    delete from truck
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.it.vehicle.entity.Truck">
+    insert into truck (truck_id, truck_number, truck_type, 
+      motor_id, chassis_id, insurance_company, 
+      truck_image_address, truck_weight, carrying_capacity, 
+      truck_height, truck_width, truck_controlled_axis, 
+      truck_length, truck_status, truck_transport_id, 
+      truck_driver_id)
+    values (#{truckId,jdbcType=INTEGER}, #{truckNumber,jdbcType=VARCHAR}, #{truckType,jdbcType=VARCHAR}, 
+      #{motorId,jdbcType=VARCHAR}, #{chassisId,jdbcType=VARCHAR}, #{insuranceCompany,jdbcType=VARCHAR}, 
+      #{truckImageAddress,jdbcType=VARCHAR}, #{truckWeight,jdbcType=REAL}, #{carryingCapacity,jdbcType=REAL}, 
+      #{truckHeight,jdbcType=REAL}, #{truckWidth,jdbcType=REAL}, #{truckControlledAxis,jdbcType=REAL}, 
+      #{truckLength,jdbcType=REAL}, #{truckStatus,jdbcType=INTEGER}, #{truckTransportId,jdbcType=INTEGER}, 
+      #{truckDriverId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.it.vehicle.entity.Truck">
+    insert into truck
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="truckId != null">
+        truck_id,
+      </if>
+      <if test="truckNumber != null">
+        truck_number,
+      </if>
+      <if test="truckType != null">
+        truck_type,
+      </if>
+      <if test="motorId != null">
+        motor_id,
+      </if>
+      <if test="chassisId != null">
+        chassis_id,
+      </if>
+      <if test="insuranceCompany != null">
+        insurance_company,
+      </if>
+      <if test="truckImageAddress != null">
+        truck_image_address,
+      </if>
+      <if test="truckWeight != null">
+        truck_weight,
+      </if>
+      <if test="carryingCapacity != null">
+        carrying_capacity,
+      </if>
+      <if test="truckHeight != null">
+        truck_height,
+      </if>
+      <if test="truckWidth != null">
+        truck_width,
+      </if>
+      <if test="truckControlledAxis != null">
+        truck_controlled_axis,
+      </if>
+      <if test="truckLength != null">
+        truck_length,
+      </if>
+      <if test="truckStatus != null">
+        truck_status,
+      </if>
+      <if test="truckTransportId != null">
+        truck_transport_id,
+      </if>
+      <if test="truckDriverId != null">
+        truck_driver_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="truckId != null">
+        #{truckId,jdbcType=INTEGER},
+      </if>
+      <if test="truckNumber != null">
+        #{truckNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="truckType != null">
+        #{truckType,jdbcType=VARCHAR},
+      </if>
+      <if test="motorId != null">
+        #{motorId,jdbcType=VARCHAR},
+      </if>
+      <if test="chassisId != null">
+        #{chassisId,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompany != null">
+        #{insuranceCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="truckImageAddress != null">
+        #{truckImageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="truckWeight != null">
+        #{truckWeight,jdbcType=REAL},
+      </if>
+      <if test="carryingCapacity != null">
+        #{carryingCapacity,jdbcType=REAL},
+      </if>
+      <if test="truckHeight != null">
+        #{truckHeight,jdbcType=REAL},
+      </if>
+      <if test="truckWidth != null">
+        #{truckWidth,jdbcType=REAL},
+      </if>
+      <if test="truckControlledAxis != null">
+        #{truckControlledAxis,jdbcType=REAL},
+      </if>
+      <if test="truckLength != null">
+        #{truckLength,jdbcType=REAL},
+      </if>
+      <if test="truckStatus != null">
+        #{truckStatus,jdbcType=INTEGER},
+      </if>
+      <if test="truckTransportId != null">
+        #{truckTransportId,jdbcType=INTEGER},
+      </if>
+      <if test="truckDriverId != null">
+        #{truckDriverId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.it.vehicle.entity.TruckExample" resultType="java.lang.Long">
+    select count(*) from truck
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update truck
+    <set>
+      <if test="record.truckId != null">
+        truck_id = #{record.truckId,jdbcType=INTEGER},
+      </if>
+      <if test="record.truckNumber != null">
+        truck_number = #{record.truckNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.truckType != null">
+        truck_type = #{record.truckType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.motorId != null">
+        motor_id = #{record.motorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chassisId != null">
+        chassis_id = #{record.chassisId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insuranceCompany != null">
+        insurance_company = #{record.insuranceCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.truckImageAddress != null">
+        truck_image_address = #{record.truckImageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.truckWeight != null">
+        truck_weight = #{record.truckWeight,jdbcType=REAL},
+      </if>
+      <if test="record.carryingCapacity != null">
+        carrying_capacity = #{record.carryingCapacity,jdbcType=REAL},
+      </if>
+      <if test="record.truckHeight != null">
+        truck_height = #{record.truckHeight,jdbcType=REAL},
+      </if>
+      <if test="record.truckWidth != null">
+        truck_width = #{record.truckWidth,jdbcType=REAL},
+      </if>
+      <if test="record.truckControlledAxis != null">
+        truck_controlled_axis = #{record.truckControlledAxis,jdbcType=REAL},
+      </if>
+      <if test="record.truckLength != null">
+        truck_length = #{record.truckLength,jdbcType=REAL},
+      </if>
+      <if test="record.truckStatus != null">
+        truck_status = #{record.truckStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.truckTransportId != null">
+        truck_transport_id = #{record.truckTransportId,jdbcType=INTEGER},
+      </if>
+      <if test="record.truckDriverId != null">
+        truck_driver_id = #{record.truckDriverId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update truck
+    set truck_id = #{record.truckId,jdbcType=INTEGER},
+      truck_number = #{record.truckNumber,jdbcType=VARCHAR},
+      truck_type = #{record.truckType,jdbcType=VARCHAR},
+      motor_id = #{record.motorId,jdbcType=VARCHAR},
+      chassis_id = #{record.chassisId,jdbcType=VARCHAR},
+      insurance_company = #{record.insuranceCompany,jdbcType=VARCHAR},
+      truck_image_address = #{record.truckImageAddress,jdbcType=VARCHAR},
+      truck_weight = #{record.truckWeight,jdbcType=REAL},
+      carrying_capacity = #{record.carryingCapacity,jdbcType=REAL},
+      truck_height = #{record.truckHeight,jdbcType=REAL},
+      truck_width = #{record.truckWidth,jdbcType=REAL},
+      truck_controlled_axis = #{record.truckControlledAxis,jdbcType=REAL},
+      truck_length = #{record.truckLength,jdbcType=REAL},
+      truck_status = #{record.truckStatus,jdbcType=INTEGER},
+      truck_transport_id = #{record.truckTransportId,jdbcType=INTEGER},
+      truck_driver_id = #{record.truckDriverId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.it.vehicle.entity.Truck">
+    update truck
+    <set>
+      <if test="truckNumber != null">
+        truck_number = #{truckNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="truckType != null">
+        truck_type = #{truckType,jdbcType=VARCHAR},
+      </if>
+      <if test="motorId != null">
+        motor_id = #{motorId,jdbcType=VARCHAR},
+      </if>
+      <if test="chassisId != null">
+        chassis_id = #{chassisId,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompany != null">
+        insurance_company = #{insuranceCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="truckImageAddress != null">
+        truck_image_address = #{truckImageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="truckWeight != null">
+        truck_weight = #{truckWeight,jdbcType=REAL},
+      </if>
+      <if test="carryingCapacity != null">
+        carrying_capacity = #{carryingCapacity,jdbcType=REAL},
+      </if>
+      <if test="truckHeight != null">
+        truck_height = #{truckHeight,jdbcType=REAL},
+      </if>
+      <if test="truckWidth != null">
+        truck_width = #{truckWidth,jdbcType=REAL},
+      </if>
+      <if test="truckControlledAxis != null">
+        truck_controlled_axis = #{truckControlledAxis,jdbcType=REAL},
+      </if>
+      <if test="truckLength != null">
+        truck_length = #{truckLength,jdbcType=REAL},
+      </if>
+      <if test="truckStatus != null">
+        truck_status = #{truckStatus,jdbcType=INTEGER},
+      </if>
+      <if test="truckTransportId != null">
+        truck_transport_id = #{truckTransportId,jdbcType=INTEGER},
+      </if>
+      <if test="truckDriverId != null">
+        truck_driver_id = #{truckDriverId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where truck_id = #{truckId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.it.vehicle.entity.Truck">
+    update truck
+    set truck_number = #{truckNumber,jdbcType=VARCHAR},
+      truck_type = #{truckType,jdbcType=VARCHAR},
+      motor_id = #{motorId,jdbcType=VARCHAR},
+      chassis_id = #{chassisId,jdbcType=VARCHAR},
+      insurance_company = #{insuranceCompany,jdbcType=VARCHAR},
+      truck_image_address = #{truckImageAddress,jdbcType=VARCHAR},
+      truck_weight = #{truckWeight,jdbcType=REAL},
+      carrying_capacity = #{carryingCapacity,jdbcType=REAL},
+      truck_height = #{truckHeight,jdbcType=REAL},
+      truck_width = #{truckWidth,jdbcType=REAL},
+      truck_controlled_axis = #{truckControlledAxis,jdbcType=REAL},
+      truck_length = #{truckLength,jdbcType=REAL},
+      truck_status = #{truckStatus,jdbcType=INTEGER},
+      truck_transport_id = #{truckTransportId,jdbcType=INTEGER},
+      truck_driver_id = #{truckDriverId,jdbcType=INTEGER}
+    where truck_id = #{truckId,jdbcType=INTEGER}
+  </update>
+</mapper>
