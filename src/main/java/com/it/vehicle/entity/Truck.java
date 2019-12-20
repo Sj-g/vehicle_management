@@ -27,6 +27,12 @@ public class Truck {
 
     private Float truckLength;
 
+    private Integer truckStatus;
+
+    private Integer truckTransportId;
+
+    private Integer truckDriverId;
+
     public Integer getTruckId() {
         return truckId;
     }
@@ -129,5 +135,29 @@ public class Truck {
 
     public void setTruckLength(Float truckLength) {
         this.truckLength = truckLength;
+    }
+
+    public Integer getTruckStatus() {
+        return truckStatus;
+    }
+
+    public void setTruckStatus(Integer truckStatus) {
+        this.truckStatus = truckStatus;
+    }
+
+    public Integer getTruckTransportId() {
+        return truckTransportId;
+    }
+
+    public void setTruckTransportId(Integer truckTransportId) {
+        this.truckTransportId = truckTransportId;
+    }
+
+    public Integer getTruckDriverId() {
+        return truckDriverId;
+    }
+
+    public void setTruckDriverId(Integer truckDriverId) {
+        this.truckDriverId = truckDriverId;
     }
 }

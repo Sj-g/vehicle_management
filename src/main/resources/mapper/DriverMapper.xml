@@ -15,10 +15,8 @@
     <result column="driver_id_img_reverse_add" jdbcType="VARCHAR" property="driverIdImgReverseAdd" />
     <result column="license_id" jdbcType="VARCHAR" property="licenseId" />
     <result column="allow_type" jdbcType="VARCHAR" property="allowType" />
-    <result column="truck_id" jdbcType="VARCHAR" property="truckId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="state_pass" jdbcType="INTEGER" property="statePass" />
     <result column="state_now" jdbcType="INTEGER" property="stateNow" />
     <result column="driver_email" jdbcType="VARCHAR" property="driverEmail" />
     <result column="driver_experience" jdbcType="VARCHAR" property="driverExperience" />
@@ -84,8 +82,7 @@
   <sql id="Base_Column_List">
     driver_id, driver_real_name, driver_name, driver_password, driver_birthday, driver_phone_number, 
     driver_id_number, driver_native, driver_now_address, driver_id_img_front_add, driver_id_img_reverse_add, 
-    license_id, allow_type, truck_id, create_time, update_time, state_pass, state_now, 
-    driver_email, driver_experience
+    license_id, allow_type, create_time, update_time, state_now, driver_email, driver_experience
   </sql>
   <select id="selectByExample" parameterType="com.it.vehicle.entity.DriverExample" resultMap="BaseResultMap">
     select
@@ -122,18 +119,16 @@
       driver_password, driver_birthday, driver_phone_number, 
       driver_id_number, driver_native, driver_now_address, 
       driver_id_img_front_add, driver_id_img_reverse_add, 
-      license_id, allow_type, truck_id, 
-      create_time, update_time, state_pass, 
-      state_now, driver_email, driver_experience
-      )
+      license_id, allow_type, create_time, 
+      update_time, state_now, driver_email, 
+      driver_experience)
     values (#{driverId,jdbcType=INTEGER}, #{driverRealName,jdbcType=VARCHAR}, #{driverName,jdbcType=VARCHAR}, 
       #{driverPassword,jdbcType=VARCHAR}, #{driverBirthday,jdbcType=DATE}, #{driverPhoneNumber,jdbcType=VARCHAR}, 
       #{driverIdNumber,jdbcType=VARCHAR}, #{driverNative,jdbcType=VARCHAR}, #{driverNowAddress,jdbcType=VARCHAR}, 
       #{driverIdImgFrontAdd,jdbcType=VARCHAR}, #{driverIdImgReverseAdd,jdbcType=VARCHAR}, 
-      #{licenseId,jdbcType=VARCHAR}, #{allowType,jdbcType=VARCHAR}, #{truckId,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{statePass,jdbcType=INTEGER}, 
-      #{stateNow,jdbcType=INTEGER}, #{driverEmail,jdbcType=VARCHAR}, #{driverExperience,jdbcType=VARCHAR}
-      )
+      #{licenseId,jdbcType=VARCHAR}, #{allowType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{stateNow,jdbcType=INTEGER}, #{driverEmail,jdbcType=VARCHAR}, 
+      #{driverExperience,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.it.vehicle.entity.Driver">
     insert into driver
@@ -177,17 +172,11 @@
       <if test="allowType != null">
         allow_type,
       </if>
-      <if test="truckId != null">
-        truck_id,
-      </if>
       <if test="createTime != null">
         create_time,
       </if>
       <if test="updateTime != null">
         update_time,
-      </if>
-      <if test="statePass != null">
-        state_pass,
       </if>
       <if test="stateNow != null">
         state_now,
@@ -239,17 +228,11 @@
       <if test="allowType != null">
         #{allowType,jdbcType=VARCHAR},
       </if>
-      <if test="truckId != null">
-        #{truckId,jdbcType=VARCHAR},
-      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="statePass != null">
-        #{statePass,jdbcType=INTEGER},
       </if>
       <if test="stateNow != null">
         #{stateNow,jdbcType=INTEGER},
@@ -310,17 +293,11 @@
       <if test="record.allowType != null">
         allow_type = #{record.allowType,jdbcType=VARCHAR},
       </if>
-      <if test="record.truckId != null">
-        truck_id = #{record.truckId,jdbcType=VARCHAR},
-      </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.statePass != null">
-        state_pass = #{record.statePass,jdbcType=INTEGER},
       </if>
       <if test="record.stateNow != null">
         state_now = #{record.stateNow,jdbcType=INTEGER},
@@ -351,10 +328,8 @@
       driver_id_img_reverse_add = #{record.driverIdImgReverseAdd,jdbcType=VARCHAR},
       license_id = #{record.licenseId,jdbcType=VARCHAR},
       allow_type = #{record.allowType,jdbcType=VARCHAR},
-      truck_id = #{record.truckId,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      state_pass = #{record.statePass,jdbcType=INTEGER},
       state_now = #{record.stateNow,jdbcType=INTEGER},
       driver_email = #{record.driverEmail,jdbcType=VARCHAR},
       driver_experience = #{record.driverExperience,jdbcType=VARCHAR}
@@ -401,17 +376,11 @@
       <if test="allowType != null">
         allow_type = #{allowType,jdbcType=VARCHAR},
       </if>
-      <if test="truckId != null">
-        truck_id = #{truckId,jdbcType=VARCHAR},
-      </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="statePass != null">
-        state_pass = #{statePass,jdbcType=INTEGER},
       </if>
       <if test="stateNow != null">
         state_now = #{stateNow,jdbcType=INTEGER},
@@ -439,10 +408,8 @@
       driver_id_img_reverse_add = #{driverIdImgReverseAdd,jdbcType=VARCHAR},
       license_id = #{licenseId,jdbcType=VARCHAR},
       allow_type = #{allowType,jdbcType=VARCHAR},
-      truck_id = #{truckId,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      state_pass = #{statePass,jdbcType=INTEGER},
       state_now = #{stateNow,jdbcType=INTEGER},
       driver_email = #{driverEmail,jdbcType=VARCHAR},
       driver_experience = #{driverExperience,jdbcType=VARCHAR}

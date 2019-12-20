@@ -583,6 +583,66 @@ public class AdminExample {
             addCriterion("admin_email not between", value1, value2, "adminEmail");
             return (Criteria) this;
         }
+
+        public Criteria andAdminStatusIsNull() {
+            addCriterion("admin_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusIsNotNull() {
+            addCriterion("admin_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusEqualTo(Integer value) {
+            addCriterion("admin_status =", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusNotEqualTo(Integer value) {
+            addCriterion("admin_status <>", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusGreaterThan(Integer value) {
+            addCriterion("admin_status >", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("admin_status >=", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusLessThan(Integer value) {
+            addCriterion("admin_status <", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("admin_status <=", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusIn(List<Integer> values) {
+            addCriterion("admin_status in", values, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusNotIn(List<Integer> values) {
+            addCriterion("admin_status not in", values, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusBetween(Integer value1, Integer value2) {
+            addCriterion("admin_status between", value1, value2, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("admin_status not between", value1, value2, "adminStatus");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

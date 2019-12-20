@@ -2,6 +2,7 @@ package com.it.vehicle.controller;
 
 import com.it.vehicle.dto.DriverInfo;
 import com.it.vehicle.entity.Driver;
+import com.it.vehicle.service.Imp.AdminService;
 import com.it.vehicle.service.Imp.DriverService;
 import com.it.vehicle.service.Imp.RegisterService;
 import com.it.vehicle.utils.DateUtils;
@@ -35,18 +36,9 @@ public class RegisterController {
     public void driverRegister(HttpServletRequest request,
                                HttpServletResponse response,
                                DriverInfo driverInfo,
-                               String identifyCode,
                                MultipartFile driverIdImgFront,
                                MultipartFile driverIdImgReverse) throws Exception {
-
-        //校验验证码
-        String SessIdentifyCode = (String) request.getSession().getAttribute("identifyCode");
-
-        if (SessIdentifyCode==null||!SessIdentifyCode.equalsIgnoreCase(identifyCode)){
-            request.setAttribute("identifyCodeError", "验证码错误");
-            request.getRequestDispatcher("/driverRegister.jsp").forward(request,response);
-            return;
-        }
+//        System.out.println(driverInfo);
         String driverIdImgFrontFilename = null;
         String driverIdImgReverseFilename = null;
 
@@ -79,7 +71,7 @@ public class RegisterController {
         driver.setDriverName(driverInfo.getDriverName());
         driver.setDriverPassword(MD5.getEncryptMD5Str(driverInfo.getDriverPassword()));
         driver.setDriverRealName(driverInfo.getDriverRealName());
-        driver.setDriverBirthday(DateUtils.stringToDate(driverInfo.getDriverBirthday(),"yyyy/MM/dd"));
+        driver.setDriverBirthday(DateUtils.stringToDate(driverInfo.getDriverBirthday(),"yyyy-MM-dd"));
         driver.setDriverIdNumber(driverInfo.getDriverIdNumber());
         driver.setDriverIdImgFrontAdd(request.getSession().getServletContext().getRealPath("/uploads/")+driverIdImgFrontFilename);
         driver.setDriverIdImgReverseAdd(request.getSession().getServletContext().getRealPath("/uploads/")+driverIdImgReverseFilename);
@@ -90,7 +82,6 @@ public class RegisterController {
         driver.setLicenseId(driverInfo.getLicenseId());
         driver.setDriverExperience(driverInfo.getDriverExperience());
         driver.setAllowType(driverInfo.getAllowType());
-        driver.setTruckId("1111");
 
         driverService.driverRegist(driver);
         request.getRequestDispatcher("/registerSuccess.jsp").forward(request,response);
@@ -100,12 +91,32 @@ public class RegisterController {
     //验证码发送
     @RequestMapping("/sendIdentifyCode")
     public void sendIdentifyCode(HttpServletRequest request, String driverEmail) {
-        String identifyCode = EmailIdentifyCode.achieveCode();
+//        System.out.println("司机邮箱："+driverEmail);
         HttpSession session = request.getSession();
-        session.setAttribute("identifyCode",identifyCode);
-        session.setMaxInactiveInterval(60);
+        String identifyCode = EmailIdentifyCode.achieveCode();
         EmailIdentifyCode.sendAuthCodeEmail(driverEmail, identifyCode);
+        session.setAttribute(driverEmail+"identifyCode",identifyCode);
+        session.setMaxInactiveInterval(300);
     }
 
+    //校验管理员名是否存在
+    @RequestMapping("/checkDriverName")
+    public @ResponseBody boolean checkUsername(String driverName ) throws Exception {
+        boolean isExist =driverService.isExist(driverName);
+        return isExist;
+    }
+
+    //异步校验注册验证码
+    @RequestMapping("/checkIdentifyCode")
+    public @ResponseBody boolean checkIdentifyCode(HttpServletRequest request,String identifyCode,String driverEmail){
+        //校验验证码
+        String SessIdentifyCode = (String) request.getSession().getAttribute(driverEmail+"identifyCode");
+
+        if (SessIdentifyCode==null||!SessIdentifyCode.equalsIgnoreCase(identifyCode)){
+            return false;
+        }else {
+            return true;
+        }
+    }
 
 }

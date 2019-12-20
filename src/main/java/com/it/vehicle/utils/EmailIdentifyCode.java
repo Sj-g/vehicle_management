@@ -28,7 +28,7 @@ public class EmailIdentifyCode {
             mail.addTo(email);//接收的邮箱
             //System.out.println("email"+email);
             mail.setSubject("注册验证码");//设置邮件的主题
-            mail.setMsg("尊敬的用户:你好!\n 注册验证码为:" + authCode+"\n"+"     (有效期为一分钟)\n"+"如非本人操作请忽略");//设置邮件的内容
+            mail.setMsg("尊敬的用户:你好!\n 注册验证码为:" + authCode+"\n"+"     (有效期为五分钟)\n"+"如非本人操作请忽略");//设置邮件的内容
             mail.send();//发送
         } catch (EmailException e) {
             e.printStackTrace();

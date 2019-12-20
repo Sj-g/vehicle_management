@@ -57,7 +57,7 @@ public class LoginServiceImp implements LoginService {
         DriverExample.Criteria criteria = driverExample.createCriteria();
         criteria.andDriverNameEqualTo(driverName);
         criteria.andDriverPasswordEqualTo(driverPassword);
-        criteria.andStatePassEqualTo(1);
+        criteria.andStateNowEqualTo(1);
         List<Driver> drivers = driverMapper.selectByExample(driverExample);
 
         //返回结果
