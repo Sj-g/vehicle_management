@@ -29,13 +29,9 @@ public class Driver {
 
     private String allowType;
 
-    private String truckId;
-
     private Date createTime;
 
     private Date updateTime;
-
-    private Integer statePass;
 
     private Integer stateNow;
 
@@ -147,14 +143,6 @@ public class Driver {
         this.allowType = allowType == null ? null : allowType.trim();
     }
 
-    public String getTruckId() {
-        return truckId;
-    }
-
-    public void setTruckId(String truckId) {
-        this.truckId = truckId == null ? null : truckId.trim();
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -169,14 +157,6 @@ public class Driver {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public Integer getStatePass() {
-        return statePass;
-    }
-
-    public void setStatePass(Integer statePass) {
-        this.statePass = statePass;
     }
 
     public Integer getStateNow() {

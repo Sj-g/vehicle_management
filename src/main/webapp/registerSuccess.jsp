@@ -12,6 +12,6 @@
 </head>
 <body>
 <h1>注册成功</h1>
-<a href="driverLogin.jsp">登录页面</a>
+<a href="${pageContext.request.contextPath}/driverLogin2.jsp">登录页面</a>
 </body>
 </html>

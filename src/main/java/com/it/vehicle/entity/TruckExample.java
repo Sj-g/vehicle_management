@@ -943,6 +943,186 @@ public class TruckExample {
             addCriterion("truck_length not between", value1, value2, "truckLength");
             return (Criteria) this;
         }
+
+        public Criteria andTruckStatusIsNull() {
+            addCriterion("truck_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckStatusIsNotNull() {
+            addCriterion("truck_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckStatusEqualTo(Integer value) {
+            addCriterion("truck_status =", value, "truckStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckStatusNotEqualTo(Integer value) {
+            addCriterion("truck_status <>", value, "truckStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckStatusGreaterThan(Integer value) {
+            addCriterion("truck_status >", value, "truckStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("truck_status >=", value, "truckStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckStatusLessThan(Integer value) {
+            addCriterion("truck_status <", value, "truckStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("truck_status <=", value, "truckStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckStatusIn(List<Integer> values) {
+            addCriterion("truck_status in", values, "truckStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckStatusNotIn(List<Integer> values) {
+            addCriterion("truck_status not in", values, "truckStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckStatusBetween(Integer value1, Integer value2) {
+            addCriterion("truck_status between", value1, value2, "truckStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("truck_status not between", value1, value2, "truckStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdIsNull() {
+            addCriterion("truck_transport_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdIsNotNull() {
+            addCriterion("truck_transport_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdEqualTo(Integer value) {
+            addCriterion("truck_transport_id =", value, "truckTransportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdNotEqualTo(Integer value) {
+            addCriterion("truck_transport_id <>", value, "truckTransportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdGreaterThan(Integer value) {
+            addCriterion("truck_transport_id >", value, "truckTransportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("truck_transport_id >=", value, "truckTransportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdLessThan(Integer value) {
+            addCriterion("truck_transport_id <", value, "truckTransportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdLessThanOrEqualTo(Integer value) {
+            addCriterion("truck_transport_id <=", value, "truckTransportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdIn(List<Integer> values) {
+            addCriterion("truck_transport_id in", values, "truckTransportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdNotIn(List<Integer> values) {
+            addCriterion("truck_transport_id not in", values, "truckTransportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdBetween(Integer value1, Integer value2) {
+            addCriterion("truck_transport_id between", value1, value2, "truckTransportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckTransportIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("truck_transport_id not between", value1, value2, "truckTransportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdIsNull() {
+            addCriterion("truck_driver_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdIsNotNull() {
+            addCriterion("truck_driver_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdEqualTo(Integer value) {
+            addCriterion("truck_driver_id =", value, "truckDriverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdNotEqualTo(Integer value) {
+            addCriterion("truck_driver_id <>", value, "truckDriverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdGreaterThan(Integer value) {
+            addCriterion("truck_driver_id >", value, "truckDriverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("truck_driver_id >=", value, "truckDriverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdLessThan(Integer value) {
+            addCriterion("truck_driver_id <", value, "truckDriverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdLessThanOrEqualTo(Integer value) {
+            addCriterion("truck_driver_id <=", value, "truckDriverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdIn(List<Integer> values) {
+            addCriterion("truck_driver_id in", values, "truckDriverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdNotIn(List<Integer> values) {
+            addCriterion("truck_driver_id not in", values, "truckDriverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdBetween(Integer value1, Integer value2) {
+            addCriterion("truck_driver_id between", value1, value2, "truckDriverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTruckDriverIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("truck_driver_id not between", value1, value2, "truckDriverId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -15,6 +15,8 @@ public class Admin {
 
     private String adminEmail;
 
+    private Integer adminStatus;
+
     public Integer getAdminId() {
         return adminId;
     }
@@ -69,5 +71,13 @@ public class Admin {
 
     public void setAdminEmail(String adminEmail) {
         this.adminEmail = adminEmail == null ? null : adminEmail.trim();
+    }
+
+    public Integer getAdminStatus() {
+        return adminStatus;
+    }
+
+    public void setAdminStatus(Integer adminStatus) {
+        this.adminStatus = adminStatus;
     }
 }
